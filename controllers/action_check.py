@@ -65,9 +65,10 @@ class ActionCheck():
         """
         Determines if an attack succeeds and, if so, how many column shifts result
         """
+        print(f"To Hit: {to_hit}, Rolled: {rolled}")
         success = rolled >= to_hit
         column_shifts = self._get_column_shifts(rolled, to_hit)
-
+        print(f"Success: {success}, Column Shifts: {column_shifts}")
         return {
             "success": success,
             "column_shifts": column_shifts
@@ -89,7 +90,7 @@ class ActionCheck():
         return column
 
     def _get_column_shifts(self, rolled: int, to_hit: int):
-        if rolled < to_hit:
+        if rolled <= to_hit:
             return 0
 
         # First get the key from the dictionary for the to_hit value
@@ -103,4 +104,4 @@ class ActionCheck():
             check_value = self.TO_HIT[temp_column_key]
 
         # print(f"Column key is: {temp_column_key}")
-        return abs(temp_column_key - column_key)
+        return abs((temp_column_key+1) - column_key)

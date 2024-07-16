@@ -1,11 +1,15 @@
 from PySide6.QtWidgets import (
     QWidget, QSpinBox, QLabel, QHBoxLayout, QVBoxLayout)
+from PySide6.QtCore import Signal
 from controllers.action_check import ActionCheck
 
 
 class OvRv(QWidget):
+
+    to_hit_value = Signal(int)
+
     def __init__(self, parent=None):
-        super(OvRv, self).__init__(parent)
+        super().__init__()
 
         self.setMaximumSize(300, 200)
 
@@ -21,7 +25,7 @@ class OvRv(QWidget):
         self.opposing_value.setMaximum(100)
 
         to_hit_label = QLabel("To Hit")
-        self.to_hit = QLabel()
+        self.roll_to_hit = QLabel()
 
         # Signals
         self.acting_value.valueChanged.connect(self._calculate_to_hit)
@@ -42,7 +46,7 @@ class OvRv(QWidget):
 
         to_hit_layout = QHBoxLayout()
         to_hit_layout.addWidget(to_hit_label)
-        to_hit_layout.addWidget(self.to_hit)
+        to_hit_layout.addWidget(self.roll_to_hit)
 
         layout = QVBoxLayout()
         layout.addWidget(title)
@@ -56,4 +60,7 @@ class OvRv(QWidget):
     def _calculate_to_hit(self):
         to_hit = ActionCheck().get_to_hit(
             self.acting_value.value(), self.opposing_value.value())
-        self.to_hit.setText(str(to_hit))
+        self.roll_to_hit.setText(str(to_hit))
+        # Emit signal with to_hit value to be used in other widgets
+        self.to_hit_value.emit(int(to_hit))
+        return to_hit
