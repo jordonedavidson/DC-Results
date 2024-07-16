@@ -26,7 +26,7 @@ TO_HIT = {
 }
 
 
-def determine_to_hit(acting, opposing):
+def get_to_hit(acting, opposing):
     to_hit = 11
     acting_column = get_column(acting)
     opposing_column = get_column(opposing)
@@ -89,6 +89,6 @@ def get_column_shifts(rolled, to_hit):
     return abs(temp_column_key - column_key)
 
 
-print(f"To hit is: {determine_to_hit(3, 6)}")
+print(f"To hit is: {get_to_hit(3, 6)}")
 
 print(f"Rolled a 21. Result is: {attack_result(13, 21)}")
