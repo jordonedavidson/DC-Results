@@ -1,0 +1,2 @@
+# Ignore the __pycache__ folder wherever it occurs in the project
+__pycache__/
