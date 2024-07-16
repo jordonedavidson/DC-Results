@@ -1,7 +1,12 @@
-from controllers.action_check import ActionCheck
+from PySide6.QtWidgets import QApplication, QMainWindow, QVBoxLayout
+from views.ov_rv import OvRv
 
-ac = ActionCheck()
+app = QApplication([])
 
-print(f"To hit is: {ac.get_to_hit(3, 6)}")
+window = QMainWindow()
+layout = QVBoxLayout()
+window.setWindowTitle("DC Heroes Action Checker")
+window.setCentralWidget(OvRv())
 
-print(f"Rolled a 21. Result is: {ac.attack_result(13, 21)}")
+window.show()
+app.exec()
