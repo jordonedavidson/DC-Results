@@ -7,6 +7,8 @@ class OvRv(QWidget):
     def __init__(self, parent=None):
         super(OvRv, self).__init__(parent)
 
+        self.setMaximumSize(300, 200)
+
         title = QLabel("Calculate To Hit Value")
         acting_value_label = QLabel("Acting Value")
         self.acting_value = QSpinBox()
@@ -47,6 +49,9 @@ class OvRv(QWidget):
         layout.addLayout(values_layout)
         layout.addLayout(to_hit_layout)
         self.setLayout(layout)
+
+        # Set initial value of to_hit
+        self._calculate_to_hit()
 
     def _calculate_to_hit(self):
         to_hit = ActionCheck().get_to_hit(
