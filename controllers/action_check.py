@@ -36,14 +36,28 @@ class ActionCheck():
         acting_column = self._get_column(acting)
         opposing_column = self._get_column(opposing)
 
-        to_hit_index = acting_column - opposing_column
-        # print(f"To hit index is: {to_hit_index}")
-        if to_hit_index > 5:
-            to_hit = self.TO_HIT[5]
-        elif to_hit_index < -9:
-            to_hit = self.TO_HIT[-9] + (to_hit_index - 9) * 5
+        if opposing_column == 0:
+            match acting_column:
+                case 1:
+                    to_hit = 6
+                case 2:
+                    to_hit = 5
+                case 3:
+                    to_hit = 4
+                case 4:
+                    to_hit = 4
+                case _:
+                    to_hit = 3
+
         else:
-            to_hit = self.TO_HIT[to_hit_index]
+            to_hit_index = acting_column - opposing_column
+            # print(f"To hit index is: {to_hit_index}")
+            if to_hit_index > 5:
+                to_hit = self.TO_HIT[5]
+            elif to_hit_index < -9:
+                to_hit = self.TO_HIT[-9] + (to_hit_index - 9) * 5
+            else:
+                to_hit = self.TO_HIT[to_hit_index]
 
         return to_hit
 
