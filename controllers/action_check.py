@@ -31,6 +31,12 @@ class ActionCheck():
         -9: 40
     }
 
+    column_zero_cases = [
+        { 1: 6},
+        { 2: 5, 1: 9 },
+        { 3: 4, 2: 7, 1: 9 },
+    ]
+
     def get_to_hit(self, acting: int, opposing: int):
         to_hit = 11
         acting_column = self._get_column(acting)
@@ -93,6 +99,11 @@ class ActionCheck():
         if rolled <= to_hit:
             return 0
 
+        # There are 3 cases that need to be handled for the 0th Opposing Value column
+        # for: 
+        #   AV [1,2], VALUES["1"] = 6
+        #   AV [3,4], VALUES["2"] = 5, VALUES["1"] = 9
+        #   AV [5,6], VALUES["3"] = 9, VALUES["2"] = 7, VALUES["1"] = 4
         # First get the key from the dictionary for the to_hit value
         column_key = list(self.TO_HIT.keys())[
             list(self.TO_HIT.values()).index(to_hit)]
