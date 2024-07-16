@@ -33,8 +33,8 @@ class ActionCheck():
 
     def get_to_hit(self, acting: int, opposing: int):
         to_hit = 11
-        acting_column = self.get_column(acting)
-        opposing_column = self.get_column(opposing)
+        acting_column = self._get_column(acting)
+        opposing_column = self._get_column(opposing)
 
         to_hit_index = acting_column - opposing_column
         # print(f"To hit index is: {to_hit_index}")
@@ -47,7 +47,19 @@ class ActionCheck():
 
         return to_hit
 
-    def get_column(self, value: int):
+    def attack_result(self, to_hit: int, rolled: int):
+        """
+        Determines if an attack succeeds and, if so, how many column shifts result
+        """
+        success = rolled >= to_hit
+        column_shifts = self._get_column_shifts(rolled, to_hit)
+
+        return {
+            "success": success,
+            "column_shifts": column_shifts
+        }
+
+    def _get_column(self, value: int):
         if value == 0:
             return 0
 
@@ -62,19 +74,7 @@ class ActionCheck():
         # print(f"for value: {value}, Column number is: {column}")
         return column
 
-    def attack_result(self, to_hit: int, rolled: int):
-        """
-        Determines if an attack succeeds and, if so, how many column shifts result
-        """
-        success = rolled >= to_hit
-        column_shifts = self.get_column_shifts(rolled, to_hit)
-
-        return {
-            "success": success,
-            "column_shifts": column_shifts
-        }
-
-    def get_column_shifts(self, rolled: int, to_hit: int):
+    def _get_column_shifts(self, rolled: int, to_hit: int):
         if rolled < to_hit:
             return 0
 
