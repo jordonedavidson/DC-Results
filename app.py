@@ -7,6 +7,7 @@ window = QMainWindow()
 layout = QVBoxLayout()
 window.setWindowTitle("DC Heroes Action Checker")
 window.setCentralWidget(OvRv())
+window.setMaximumSize(300, 600)
 
 window.show()
 app.exec()
