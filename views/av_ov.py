@@ -4,7 +4,7 @@ from PySide6.QtCore import Signal
 from controllers.action_check import ActionCheck
 
 
-class OvRv(QWidget):
+class AvOv(QWidget):
 
     to_hit_value = Signal(int)
 
