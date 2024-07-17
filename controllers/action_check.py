@@ -126,6 +126,20 @@ class ActionCheck():
             "current_total": current_total
         }
 
+    def get_result(self, effect_value: int, resistance_value: int, column_shifts: int):
+        effect_column = self._get_column(effect_value)
+        resistance_column = self._get_column(resistance_value) - column_shifts
+        raps = 0
+
+        if resistance_column == 0:
+            raps = effect_value
+        elif resistance_column < 0:
+            raps = effect_value + abs(resistance_column)
+        else:
+            raps = self.RESULT_TABLE[effect_column][resistance_column]
+
+        return raps
+
     def _get_column(self, value: int):
         if value == 0:
             return 0
