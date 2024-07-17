@@ -24,6 +24,7 @@ class RollResult(QWidget):
         success_check_button = QPushButton("Results")
 
         self.to_hit_value = None
+        self.dice_roll_value = None
 
         # Signals
         success_check_button.pressed.connect(self.get_results)
@@ -58,6 +59,10 @@ class RollResult(QWidget):
     def recieve_to_hit_value(self, to_hit):
         print(f"Recieved To Hit Value: {to_hit}")
         self.to_hit_value = to_hit
+
+    def recieve_dice_roll_value(self, rolled):
+        print(f"Recieved Dice Roll Value: {rolled}")
+        self.rolled.setText(str(rolled))
 
     def get_results(self):
         print(f"To Hit: {self.to_hit_value}, Rolled: {self.rolled.text()}")

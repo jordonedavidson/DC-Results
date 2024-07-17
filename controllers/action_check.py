@@ -1,3 +1,6 @@
+import random
+
+
 class ActionCheck():
     """
     Handles the calculation of the to hit and column shifts for an attack
@@ -32,9 +35,9 @@ class ActionCheck():
     }
 
     column_zero_cases = [
-        { 1: 6},
-        { 2: 5, 1: 9 },
-        { 3: 4, 2: 7, 1: 9 },
+        {1: 6},
+        {2: 5, 1: 9},
+        {3: 4, 2: 7, 1: 9},
     ]
 
     def get_to_hit(self, acting: int, opposing: int):
@@ -80,6 +83,20 @@ class ActionCheck():
             "column_shifts": column_shifts
         }
 
+    def roll_dice(self, current_total: int = 0):
+        die_1 = random.randint(1, 10)
+        die_2 = random.randint(1, 10)
+        current_total = current_total + die_1 + die_2
+
+        if (die_1 == 1 and die_2 == 1):
+            current_total = 2
+
+        return {
+            "die_1": die_1,
+            "die_2": die_2,
+            "current_total": current_total
+        }
+
     def _get_column(self, value: int):
         if value == 0:
             return 0
@@ -100,7 +117,7 @@ class ActionCheck():
             return 0
 
         # There are 3 cases that need to be handled for the 0th Opposing Value column
-        # for: 
+        # for:
         #   AV [1,2], VALUES["1"] = 6
         #   AV [3,4], VALUES["2"] = 5, VALUES["1"] = 9
         #   AV [5,6], VALUES["3"] = 9, VALUES["2"] = 7, VALUES["1"] = 4
