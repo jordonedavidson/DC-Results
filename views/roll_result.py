@@ -36,6 +36,7 @@ class RollResult(QWidget):
         label_font.setBold(True)
         success_label.setFont(label_font)
         column_shifts_label.setFont(label_font)
+        rolled_label.setFont(label_font)
 
 
         # Signals
