@@ -25,9 +25,18 @@ class RollResult(QWidget):
         self.column_shifts_value = QLabel()
 
         success_check_button = QPushButton("Results")
-
         self.to_hit_value = None
         self.dice_roll_value = None
+
+        #Styling
+        title_font = title.font()
+        title_font.setPointSize(16)
+        title.setFont(title_font)
+        label_font = success_label.font()
+        label_font.setBold(True)
+        success_label.setFont(label_font)
+        column_shifts_label.setFont(label_font)
+
 
         # Signals
         success_check_button.pressed.connect(self.get_results)
@@ -46,7 +55,6 @@ class RollResult(QWidget):
         column_shifts_layout.addWidget(self.column_shifts_value)
 
         results_layout = QVBoxLayout()
-        results_layout.addWidget(results_label)
         results_layout.addLayout(success_layout)
         results_layout.addLayout(column_shifts_layout)
 
@@ -60,15 +68,15 @@ class RollResult(QWidget):
         self.setLayout(layout)
 
     def recieve_to_hit_value(self, to_hit):
-        print(f"Recieved To Hit Value: {to_hit}")
+        #print(f"Recieved To Hit Value: {to_hit}")
         self.to_hit_value = to_hit
 
     def recieve_dice_roll_value(self, rolled):
-        print(f"Recieved Dice Roll Value: {rolled}")
+        #print(f"Recieved Dice Roll Value: {rolled}")
         self.rolled.setText(str(rolled))
 
     def get_results(self):
-        print(f"To Hit: {self.to_hit_value}, Rolled: {self.rolled.text()}")
+        #print(f"To Hit: {self.to_hit_value}, Rolled: {self.rolled.text()}")
         if self.to_hit_value is not None:
             result = ActionCheck().attack_result(self.to_hit_value, int(self.rolled.text()))
             self.success_value.setText(str(result["success"]))

@@ -26,6 +26,18 @@ class EvRv(QWidget):
         results_label = QLabel("RAPs:")
         self.results_value = QLabel()
 
+        #Styling
+        title_font = title.font()
+        title_font.setPointSize(16)
+        title.setFont(title_font)
+        label_font = results_label.font()
+        label_font.setBold(True)
+        label_font.setPointSize(14)
+        results_label.setFont(label_font)
+        raps_font = self.results_value.font()
+        raps_font.setPointSize(14)
+        self.results_value.setFont(raps_font)
+
         # Signals
         results_button.pressed.connect(self._calculate_result)
 

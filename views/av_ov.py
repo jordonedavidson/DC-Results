@@ -27,6 +27,15 @@ class AvOv(QWidget):
         to_hit_label = QLabel("To Hit")
         self.roll_to_hit = QLabel()
 
+        #Styling
+        title_font = title.font()
+        title_font.setPointSize(16)
+        title.setFont(title_font)
+        label_font = to_hit_label.font()
+        label_font.setBold(True)
+        to_hit_label.setFont(label_font)
+
+
         # Signals
         self.acting_value.valueChanged.connect(self._calculate_to_hit)
         self.opposing_value.valueChanged.connect(self._calculate_to_hit)
@@ -63,4 +72,3 @@ class AvOv(QWidget):
         self.roll_to_hit.setText(str(to_hit))
         # Emit signal with to_hit value to be used in other widgets
         self.to_hit_value.emit(int(to_hit))
-        return to_hit

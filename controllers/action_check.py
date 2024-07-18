@@ -103,10 +103,10 @@ class ActionCheck():
         """
         Determines if an attack succeeds and, if so, how many column shifts result
         """
-        print(f"To Hit: {to_hit}, Rolled: {rolled}")
+        # print(f"To Hit: {to_hit}, Rolled: {rolled}")
         success = rolled >= to_hit
         column_shifts = self._get_column_shifts(rolled, to_hit)
-        print(f"Success: {success}, Column Shifts: {column_shifts}")
+        # print(f"Success: {success}, Column Shifts: {column_shifts}")
         return {
             "success": success,
             "column_shifts": column_shifts

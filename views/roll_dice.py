@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import (
     QWidget, QLabel, QHBoxLayout, QVBoxLayout, QPushButton)
-from PySide6.QtCore import Signal
+from PySide6.QtCore import Signal, Qt
 from controllers.action_check import ActionCheck
 
 
@@ -14,29 +14,48 @@ class RollDice(QWidget):
 
         title = QLabel("Roll Dice")
         self.roll_button = QPushButton("Roll")
-        die_1_label = QLabel("Die 1")
-        die_2_label = QLabel("Die 2")
+        # die_1_label = QLabel("Die 1")
+        # die_2_label = QLabel("Die 2")
         self.die_1_value = QLabel("")
         self.die_2_value = QLabel("")
         current_total_label = QLabel("Current Total")
         self.current_total_value = QLabel("0")
+
+        # Styling
+        title_font = title.font()
+        title_font.setPointSize(16)
+        title.setFont(title_font)
+        label_font = current_total_label.font()
+        label_font.setBold(True)
+        current_total_label.setFont(label_font)
+        die_number_font = self.die_1_value.font()
+        die_number_font.setPointSize(30)
+        self.die_1_value.setFont(die_number_font)
+        self.die_2_value.setFont(die_number_font)
+        # die_1_label.setAlignment(Qt.AlignHCenter)
+        # die_1_label.setAlignment(Qt.AlignHCenter)
+        self.die_1_value.setAlignment(Qt.AlignHCenter)
+        self.die_2_value.setAlignment(Qt.AlignHCenter)
+        
 
         # Signals
         self.roll_button.pressed.connect(self._roll_dice)
 
         # Layouts
 
-        die_1_layout = QVBoxLayout()
-        die_1_layout.addWidget(self.die_1_value)
-        die_1_layout.addWidget(die_1_label)
+        # die_1_layout = QVBoxLayout()
+        # die_1_layout.addWidget(self.die_1_value)
+        # die_1_layout.addWidget(die_1_label)
 
-        die_2_layout = QVBoxLayout()
-        die_2_layout.addWidget(self.die_2_value)
-        die_2_layout.addWidget(die_2_label)
+        # die_2_layout = QVBoxLayout()
+        # die_2_layout.addWidget(self.die_2_value)
+        # die_2_layout.addWidget(die_2_label)
 
         dice_layout = QHBoxLayout()
-        dice_layout.addLayout(die_1_layout)
-        dice_layout.addLayout(die_2_layout)
+        # dice_layout.addLayout(die_1_layout)
+        # dice_layout.addLayout(die_2_layout)
+        dice_layout.addWidget(self.die_1_value)
+        dice_layout.addWidget(self.die_2_value)
 
         current_total_layout = QHBoxLayout()
         current_total_layout.addWidget(current_total_label)
