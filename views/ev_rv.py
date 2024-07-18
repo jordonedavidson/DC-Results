@@ -67,6 +67,11 @@ class EvRv(QWidget):
 
         self.column_shifts = 0
 
+    def reset(self):
+        self.effect_value.setValue(1)
+        self.resistance_value.setValue(0)
+        self.results_value.setText("")
+
     def receive_column_shifts(self, column_shifts):
         self.column_shifts = column_shifts
 
