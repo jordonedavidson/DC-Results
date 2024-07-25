@@ -35,10 +35,11 @@ class Main(QWidget):
         self.setLayout(layout)
 
 
-main = Main()
-window.setWindowTitle("DC Heroes Action Checker")
-window.setCentralWidget(main)
-window.setMaximumSize(300, 600)
+if __name__ == "__main__":
+    main = Main()
+    window.setWindowTitle("DC Heroes Action Checker")
+    window.setCentralWidget(main)
+    window.setMaximumSize(300, 600)
 
-window.show()
-app.exec()
+    window.show()
+    app.exec()
