@@ -25,7 +25,7 @@ class AvOv(QWidget):
         self.opposing_value.setMaximum(100)
 
         to_hit_label = QLabel("To Hit")
-        self.roll_to_hit = QLabel()
+        self.roll_to_hit_value = QLabel()
 
         #Styling
         title_font = title.font()
@@ -55,7 +55,7 @@ class AvOv(QWidget):
 
         to_hit_layout = QHBoxLayout()
         to_hit_layout.addWidget(to_hit_label)
-        to_hit_layout.addWidget(self.roll_to_hit)
+        to_hit_layout.addWidget(self.roll_to_hit_value)
 
         layout = QVBoxLayout()
         layout.addWidget(title)
@@ -66,9 +66,14 @@ class AvOv(QWidget):
         # Set initial value of to_hit
         self._calculate_to_hit()
 
+    def reset(self):
+        self.acting_value.setValue(1)
+        self.opposing_value.setValue(0)
+        self.roll_to_hit_value.setText("")
+
     def _calculate_to_hit(self):
         to_hit = ActionCheck().get_to_hit(
             self.acting_value.value(), self.opposing_value.value())
-        self.roll_to_hit.setText(str(to_hit))
+        self.roll_to_hit_value.setText(str(to_hit))
         # Emit signal with to_hit value to be used in other widgets
         self.to_hit_value.emit(int(to_hit))

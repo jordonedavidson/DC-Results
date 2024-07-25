@@ -76,6 +76,11 @@ class RollResult(QWidget):
         #print(f"Recieved Dice Roll Value: {rolled}")
         self.rolled.setText(str(rolled))
 
+    def reset(self):
+        self.rolled.setText("")
+        self.success_value.setText("")
+        self.column_shifts_value.setText("")
+
     def get_results(self):
         #print(f"To Hit: {self.to_hit_value}, Rolled: {self.rolled.text()}")
         if self.to_hit_value is not None:

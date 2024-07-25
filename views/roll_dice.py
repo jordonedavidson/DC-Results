@@ -69,6 +69,13 @@ class RollDice(QWidget):
 
         self.setLayout(layout)
 
+    def reset(self):
+        self.current_total_value.setText("0")
+        self.die_1_value.setText("")
+        self.die_2_value.setText("")
+        self.roll_button.setText("Roll")
+        self.roll_button.setDisabled(False)
+
     def _roll_dice(self):
         current_total = int(self.current_total_value.text())
 
