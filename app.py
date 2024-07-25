@@ -5,7 +5,6 @@ from views.roll_dice import RollDice
 from views.ev_rv import EvRv
 
 app = QApplication([])
-app.setStyle("Fusion")
 
 window = QMainWindow()
 
