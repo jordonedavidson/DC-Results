@@ -86,6 +86,9 @@ class RollResult(QWidget):
         self.column_shifts_value.setText("")
 
     def get_results(self):
+        # Disconnect the signal connection to prevent recursion
+        self.resulting_column_shifts.disconnect(self.get_results)
+
         # print(f"To Hit: {self.to_hit_value}, Rolled: {self.rolled.text()}")
         if self.to_hit_value is not None:
             result = ActionCheck().attack_result(self.to_hit_value, int(self.rolled.text()))
@@ -99,3 +102,6 @@ class RollResult(QWidget):
             self.success_value.setText(result_value)
             self.column_shifts_value.setText(str(result["column_shifts"]))
             self.resulting_column_shifts.emit(result["column_shifts"])
+
+        # Reconnect the signal connection
+        self.resulting_column_shifts.connect(self.get_results)
