@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import (
-    QWidget, QLineEdit, QLabel, QHBoxLayout, QVBoxLayout, QPushButton)
+    QWidget, QLabel, QHBoxLayout, QVBoxLayout, QPushButton)
 from PySide6.QtCore import Signal
 from controllers.action_check import ActionCheck
 
